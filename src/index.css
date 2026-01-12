@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    /* Refined clinical color palette */
+    --background: 210 25% 97%;
+    --foreground: 220 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Clinical blue - trustworthy, professional */
+    --primary: 220 90% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 220 25% 25%;
+
+    --muted: 220 15% 93%;
+    --muted-foreground: 220 15% 46%;
+
+    /* Teal accent for success/positive states */
+    --accent: 168 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 220 90% 52%;
+
+    --radius: 0.625rem;
+
+    /* Clinical specific tokens */
+    --clinical-blue: 220 90% 52%;
+    --clinical-blue-light: 220 90% 96%;
+    --clinical-blue-muted: 220 50% 70%;
+    --clinical-green: 158 64% 40%;
+    --clinical-green-light: 158 64% 95%;
+    --clinical-orange: 28 95% 55%;
+    --clinical-orange-light: 28 95% 95%;
+    --clinical-red: 0 84% 60%;
+    --clinical-red-light: 0 84% 96%;
+    --clinical-purple: 262 80% 58%;
+    --clinical-purple-light: 262 80% 96%;
+    
+    /* Shadows */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.06);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 12%;
+    --sidebar-primary: 220 90% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 96%;
+    --sidebar-accent-foreground: 220 25% 25%;
+    --sidebar-border: 220 20% 88%;
+    --sidebar-ring: 220 90% 52%;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 220 20% 98%;
+
+    --card: 220 25% 11%;
+    --card-foreground: 220 20% 98%;
+
+    --popover: 220 25% 11%;
+    --popover-foreground: 220 20% 98%;
+
+    --primary: 220 90% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 220 20% 90%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 15% 55%;
+
+    --accent: 168 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 220 90% 60%;
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 220 20% 98%;
+    --sidebar-primary: 220 90% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 16%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 220 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .clinical-card {
+    @apply bg-card rounded-xl border border-border shadow-sm transition-all duration-200;
+  }
+
+  .clinical-card-hover {
+    @apply clinical-card hover:shadow-md hover:border-primary/20 cursor-pointer;
+  }
+
+  .clinical-card-interactive {
+    @apply clinical-card hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  .clinical-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-colors;
+  }
+
+  .clinical-badge-blue {
+    @apply bg-[hsl(var(--clinical-blue-light))] text-[hsl(var(--clinical-blue))];
+  }
+
+  .clinical-badge-green {
+    @apply bg-[hsl(var(--clinical-green-light))] text-[hsl(var(--clinical-green))];
+  }
+
+  .clinical-badge-orange {
+    @apply bg-[hsl(var(--clinical-orange-light))] text-[hsl(var(--clinical-orange))];
+  }
+
+  .clinical-badge-red {
+    @apply bg-[hsl(var(--clinical-red-light))] text-[hsl(var(--clinical-red))];
+  }
+
+  .clinical-badge-purple {
+    @apply bg-[hsl(var(--clinical-purple-light))] text-[hsl(var(--clinical-purple))];
+  }
+
+  .clinical-input {
+    @apply w-full px-3.5 py-2.5 border border-input rounded-lg bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-primary transition-all duration-200 text-sm;
+  }
+
+  .clinical-input:hover:not(:focus) {
+    @apply border-muted-foreground/30;
+  }
+
+  .clinical-label {
+    @apply block text-sm font-medium text-foreground mb-2;
+  }
+
+  .clinical-section-title {
+    @apply text-sm font-semibold text-muted-foreground uppercase tracking-wider;
+  }
+
+  .stat-card {
+    @apply clinical-card p-4 flex items-center gap-4;
+  }
+
+  .stat-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-foreground;
+  }
+
+  .stat-label {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .visit-note-card {
+    @apply clinical-card p-5 relative overflow-hidden;
+  }
+
+  .visit-note-card::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-1 bg-primary;
+  }
+
+  .empty-state {
+    @apply flex flex-col items-center justify-center text-center py-12 px-6;
+  }
+
+  .empty-state-icon {
+    @apply w-20 h-20 rounded-2xl bg-muted/80 flex items-center justify-center mb-5;
+  }
+
+  .empty-state-title {
+    @apply text-xl font-semibold text-foreground mb-2;
+  }
+
+  .empty-state-description {
+    @apply text-muted-foreground max-w-sm leading-relaxed;
+  }
+
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+
+  /* Monospace text for medical codes */
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Patient card active state */
+  .patient-card-active {
+    @apply bg-primary/5 border-primary/30 shadow-md;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg border border-border/50;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: animate-in 0.3s ease-out;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

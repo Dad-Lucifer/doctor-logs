@@ -112,7 +112,7 @@ export function PatientDetails({ patient, visitNotes, onEdit, onDelete, onAddNot
                   <Activity className="h-4 w-4 sm:h-5 sm:w-5 text-[hsl(var(--clinical-purple))]" />
                 </div>
                 <div>
-                  <div className="stat-value text-base sm:text-xl text-lg">{format(patient.createdAt, 'yyyy')}</div>
+                  <div className="stat-value text-base sm:text-xl text-lg">{format(patient.createdAt, 'MMM d, yyyy')}</div>
                   <div className="stat-label text-xs sm:text-sm">Since</div>
                 </div>
               </div>

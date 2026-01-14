@@ -1,4 +1,4 @@
-import { User, Edit3, Trash2, Plus, Calendar, Clock, Pill, FileText, Activity, Stethoscope } from 'lucide-react';
+import { User, Edit3, Trash2, Plus, Calendar, Clock, Pill, FileText, Activity, Stethoscope, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Patient, VisitNote } from '@/types/patient';
 import { format } from 'date-fns';
@@ -54,6 +54,31 @@ export function PatientDetails({ patient, visitNotes, onEdit, onDelete, onAddNot
                           <span className="text-muted-foreground">Diagnosis: </span>
                           <span className="text-foreground font-medium break-words">{patient.diagnosis}</span>
                         </div>
+                      </div>
+                    )}
+                    {patient.medicine && (
+                      <div className="flex items-start gap-2">
+                        <Pill className="h-4 w-4 text-[hsl(var(--clinical-orange))] mt-0.5 flex-shrink-0" />
+                        <div>
+                          <span className="text-muted-foreground">Medicines: </span>
+                          <span className="text-foreground font-medium break-words">{patient.medicine}</span>
+                        </div>
+                      </div>
+                    )}
+                    {(patient.phone || patient.address) && (
+                      <div className="flex flex-wrap gap-4 pt-1">
+                        {patient.phone && (
+                          <div className="flex items-center gap-1.5 text-muted-foreground">
+                            <Phone className="h-3.5 w-3.5" />
+                            <span>{patient.phone}</span>
+                          </div>
+                        )}
+                        {patient.address && (
+                          <div className="flex items-center gap-1.5 text-muted-foreground">
+                            <MapPin className="h-3.5 w-3.5" />
+                            <span>{patient.address}</span>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>

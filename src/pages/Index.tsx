@@ -342,7 +342,15 @@ const Index = () => {
         <PatientForm
           initialData={
             editingPatient
-              ? { name: editingPatient.name, age: editingPatient.age, disease: editingPatient.disease }
+              ? {
+                name: editingPatient.name,
+                age: editingPatient.age,
+                disease: editingPatient.disease,
+                diagnosis: editingPatient.diagnosis,
+                phone: editingPatient.phone,
+                address: editingPatient.address,
+                medicine: editingPatient.medicine,
+              }
               : undefined
           }
           onSubmit={handleSavePatient}

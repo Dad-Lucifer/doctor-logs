@@ -4,6 +4,9 @@ export interface Patient {
   age: number;
   disease: string;
   diagnosis?: string;
+  phone?: string;
+  address?: string;
+  medicine?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -22,6 +25,9 @@ export interface PatientFormData {
   age: number;
   disease: string;
   diagnosis?: string;
+  phone?: string;
+  address?: string;
+  medicine?: string;
 }
 
 export interface VisitNoteFormData {

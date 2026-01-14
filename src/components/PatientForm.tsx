@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { X, User, Calendar, Stethoscope, AlertCircle, Activity } from 'lucide-react';
+import {
+  X, User, Calendar, Stethoscope, AlertCircle, Activity,
+  Phone, MapPin, Pill // <--- Added new icons
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { PatientFormData } from '@/types/patient';
 
@@ -18,8 +21,17 @@ export function PatientForm({
   isLoading,
   isEditing,
 }: PatientFormProps) {
+  // Updated initial state to include new fields
   const [formData, setFormData] = useState<PatientFormData>(
-    initialData || { name: '', age: 0, disease: '' }
+    initialData || {
+      name: '',
+      age: 0,
+      disease: '',
+      diagnosis: '',
+      phone: '',
+      address: '',
+      medicine: ''
+    }
   );
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -79,6 +91,7 @@ export function PatientForm({
         {/* Scrollable Form Content */}
         <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 sm:space-y-5">
+
             {/* Name Field */}
             <div>
               <label className="clinical-label flex items-center gap-2 mb-1.5">
@@ -102,6 +115,23 @@ export function PatientForm({
                   {errors.name}
                 </p>
               )}
+            </div>
+
+            {/* NEW: Phone Number Field */}
+            <div>
+              <label className="clinical-label flex items-center gap-2 mb-1.5">
+                <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                value={formData.phone || ''}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                }
+                className="clinical-input w-full text-sm sm:text-base"
+                placeholder="e.g., 123-456-7890"
+              />
             </div>
 
             {/* Age Field */}
@@ -136,6 +166,23 @@ export function PatientForm({
                   {errors.age}
                 </p>
               )}
+            </div>
+
+            {/* NEW: Address Field */}
+            <div>
+              <label className="clinical-label flex items-center gap-2 mb-1.5">
+                <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+                Address
+              </label>
+              <input
+                type="text"
+                value={formData.address || ''}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, address: e.target.value }))
+                }
+                className="clinical-input w-full text-sm sm:text-base"
+                placeholder="Enter street address"
+              />
             </div>
 
             {/* Disease Field - Main Complaint */}
@@ -178,6 +225,23 @@ export function PatientForm({
                 placeholder="Enter medical diagnosis if available"
               />
             </div>
+
+            {/* NEW: Medicine Field */}
+            <div>
+              <label className="clinical-label flex items-center gap-2 mb-1.5">
+                <Pill className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+                Prescribed Medicines
+              </label>
+              <textarea
+                value={formData.medicine || ''}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, medicine: e.target.value }))
+                }
+                className="clinical-input w-full text-sm sm:text-base min-h-[60px] sm:min-h-[80px] resize-none"
+                placeholder="List medicines and dosage..."
+              />
+            </div>
+
           </div>
 
           {/* Fixed Footer Actions */}
